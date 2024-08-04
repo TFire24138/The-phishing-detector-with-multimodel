@@ -1,2 +1,6 @@
-data_fusion.py用于将URL与HTML特征相融合；
-data_spliting.py用于进行数据分割；
+data_fusion.py用于将URL与HTML特征相融合。
+data_spliting.py用于进行数据分割。
+get_URL_feature_csv.py为从URL中提取URL特征。
+get_feature_html_bert.py为利用bert从html内容中提取特征。
+new_train_model.py用于进行模型训练。
+urls.txt为所用的全部URL的数据
