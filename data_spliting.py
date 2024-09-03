@@ -18,8 +18,9 @@ if __name__ == '__main__':
     data_train['label'] = label_train
     data_val['label'] = label_val
     data_test['label'] = label_test
-
+    print('划分数据完成')
     # 保存数据集
     data_train.to_csv('splited_data/train_data.csv', index=False)
     data_val.to_csv('splited_data/val_data.csv', index=False)
     data_test.to_csv('splited_data/test_data.csv', index=False)
+    print('划分后数据保存成功')
