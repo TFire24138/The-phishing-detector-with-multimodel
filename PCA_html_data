@@ -1,0 +1,27 @@
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+import numpy as np
+import pandas as pd
+
+data = np.load("sorted_features.npz")
+array1 = data['features']
+array2 = data['indices']
+df1 = pd.DataFrame(array1)
+df2 = pd.DataFrame(array2)
+data= pd.concat([df1, df2], axis=1, ignore_index=True)
+data.index = data.iloc[:,768]  #将索引更新为对应的号
+data = data.iloc[:,:-1]
+data = data.iloc[:174580,:]
+original_index = data.index #保存原始索引
+
+# 标准化数据
+scaler = StandardScaler()
+data_scaled = scaler.fit_transform(data)
+# 创建PCA对象，设置主成分数
+pca = PCA(n_components=600)
+# 对数据进行PCA变换
+data_pca = pca.fit_transform(data_scaled)
+data_pca = pd.DataFrame(data_pca,index = original_index)
+
+data_pca.to_csv('PCA_HTMLfeatures.csv',index = True)
+print("成功将PCA数据保存到PCA_HTMLfeatures.csv")
